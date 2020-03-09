@@ -6,5 +6,6 @@ namespace TicTacToe
 {
     public enum Cell {X,O,Empty };
     public enum Token { X, O};
+    public enum gameOutCome { Cats, Win, Continue};
     
 }

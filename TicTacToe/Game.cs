@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace TicTacToe
 {
-    public class Game
+        public class Game
     {
-        Token playerTurn;
+        public Token playerTurn;
         Dictionary<Token, int> winCount;         
-        Board gameboard;
-
+        protected Board gameboard;
+        
         public Game()
         {
             playerTurn = Token.X;
@@ -41,30 +41,30 @@ namespace TicTacToe
             }
         }
 
-        public void playerMove(Token token, Location move)
+        public gameOutCome playerMove(Move move)
         {
             if (IsValidMove(move))
             {
-                gameboard.setValue(move, token);
+                gameboard.setValue(move);                
 
                 if (IsCatsGame())
                 {
-                    //probably tell the user its a cats game?
-                } else if (gameboard.CheckWin(token)){
-                    winCount[token]++;
-                    this.gameboard = new Board();
+                    gameboard = new Board();
+                    return gameOutCome.Cats;
+
+                } else if (gameboard.CheckWin(move.token)){
+                    winCount[move.token]++;
+                    gameboard = new Board();
                     playerTurn = Token.X;
-                        //congrats! player token has won                    
+                    return gameOutCome.Win;                   
                 } else
                 {
                     playerTurn = playerTurn == Token.X ? Token.O : Token.X;
-                }     
-           
+                    return gameOutCome.Continue;
+                }            
 
             }
-
+            return gameOutCome.Continue;
         }
-
-
     }
 }

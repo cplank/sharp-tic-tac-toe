@@ -17,16 +17,11 @@ namespace TicTacToe
         public Cell getValue(Location location)
         {
             return Spaces[location.row,location.col];
-        }
-        // overload getValue, for those who just like numbers or whatever
-        public Cell getValue(int row, int col)
-        {
-            return Spaces[row, col];
-        }
+        }        
 
-        public void setValue(Location location, Token token)
+        public void setValue(Move move)
         {
-            Spaces[location.row, location.col] =(Cell) token;
+            Spaces[move.row, move.col] =(Cell) move.token;
 
         }
         public bool IsBoardFull()
@@ -70,7 +65,7 @@ namespace TicTacToe
         {
             var diag1 = new Cell[] { Spaces[0, 0], Spaces[1, 1], Spaces[2, 2] };
             var diag2 = new Cell[] { Spaces[0, 2], Spaces[1, 1], Spaces[2, 0] };
-            for (var i = 0; i < Spaces.Length; i++)
+            for (var i = 0; i < 3; i++)
             {
                 var row = new Cell[] { Spaces[i, 0], Spaces[i, 1], Spaces[i, 2] };
                 var col = new Cell[] { Spaces[0, i], Spaces[1, i], Spaces[2, i] };

@@ -6,8 +6,12 @@
         public int col { get; }
         public Location (int row, int col)
         {
-            this.row = row;
-            this.col = col;
+            if (row < 0 || row > 2 || col < 0 || col > 2)
+            {
+                throw new System.Exception("invalid number");
+            } 
+                this.row = row;
+                this.col = col;            
             
         }
     }
